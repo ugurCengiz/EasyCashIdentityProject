@@ -1,4 +1,5 @@
-﻿using EasyCashIdentityProject.DtoLayer.Dtos.AppUserDtos;
+﻿using EasyCashIdentityProject.BusinessLayer.ValidationRules.AppUserValidationRules;
+using EasyCashIdentityProject.DtoLayer.Dtos.AppUserDtos;
 using EasyCashIdentityProject.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,9 +24,9 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(AppUserRegisterDto appUserRegisterDto)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid )
             {
-                AppUser appUser = new()
+                AppUser appUser = new AppUser()
                 {
                     UserName = appUserRegisterDto.Username,
                     Name = appUserRegisterDto.Name,
@@ -39,17 +40,24 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
 
                 };
 
-                var result = await _userManager.CreateAsync(appUser, appUserRegisterDto.Password);
+                var validator = new AppUserRegisterValidator();
+				var validation = validator.Validate(appUserRegisterDto);
 
-                if (result.Succeeded)
+				var result = await _userManager.CreateAsync(appUser, appUserRegisterDto.Password);
+
+                if (result.Succeeded  && !validation.IsValid )
                 {
                     return RedirectToAction("Index", "ConfirmMail");
                 }
                 else
                 {
-	                foreach (var item in result.Errors)
+	                foreach (var item in result.Errors )
 	                {
 		                ModelState.AddModelError("",item.Description);
+		                foreach (var valid in validation.Errors)
+		                {
+							ModelState.AddModelError("", valid.ErrorMessage);
+						}
 	                }
                 }
                 
