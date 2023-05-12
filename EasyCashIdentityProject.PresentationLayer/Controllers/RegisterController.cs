@@ -1,12 +1,11 @@
-﻿using EasyCashIdentityProject.BusinessLayer.ValidationRules.AppUserValidationRules;
-using EasyCashIdentityProject.DtoLayer.Dtos.AppUserDtos;
+﻿using EasyCashIdentityProject.DtoLayer.Dtos.AppUserDtos;
 using EasyCashIdentityProject.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EasyCashIdentityProject.PresentationLayer.Controllers
 {
-    public class RegisterController : Controller
+	public class RegisterController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
 
@@ -40,24 +39,21 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
 
                 };
 
-                var validator = new AppUserRegisterValidator();
-				var validation = validator.Validate(appUserRegisterDto);
+               
 
 				var result = await _userManager.CreateAsync(appUser, appUserRegisterDto.Password);
 
-                if (result.Succeeded  && !validation.IsValid )
+                if (result.Succeeded )
                 {
                     return RedirectToAction("Index", "ConfirmMail");
                 }
                 else
                 {
-	                foreach (var item in result.Errors )
+	               
+					foreach (var item in result.Errors )
 	                {
 		                ModelState.AddModelError("",item.Description);
-		                foreach (var valid in validation.Errors)
-		                {
-							ModelState.AddModelError("", valid.ErrorMessage);
-						}
+		               
 	                }
                 }
                 
