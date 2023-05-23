@@ -60,7 +60,7 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
                     mimeMessage.To.Add(mailboxAddressTo);
 
                     var bodyBuilder = new BodyBuilder();
-                    bodyBuilder.TextBody = "Kayıt işlemini gerçekleştirmek için oynay kodunuz:" + code;
+                    bodyBuilder.TextBody = $"Merhaba {appUserRegisterDto.Name} {appUserRegisterDto.SurName} kayıt işlemini gerçekleştirmek için oynay kodunuz:" + code;
                     mimeMessage.Body = bodyBuilder.ToMessageBody();
 
                     mimeMessage.Subject = "Easy Cash Onay Kodu";
