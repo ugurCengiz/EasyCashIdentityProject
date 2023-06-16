@@ -55,7 +55,7 @@
                         <form class="form-horizontal form-label-left" method="post" novalidate>
 
                             <p>
-                               Lütfen Havale Göndermek İstediğiniz Kişinin Bilgilerini Eksiksiz Giriniz.
+                                Lütfen Havale Göndermek İstediğiniz Kişinin Bilgilerini Eksiksiz Giriniz.
                             </p>
                             <span class="section">Müşteri Bilgileri</span>
 
@@ -71,8 +71,18 @@
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">
                                     Miktar <span class="required">*</span>
                                 </label>
+
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" asp-for="Amount" required="required" class="form-control col-md-7 col-xs-12">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">
+                                    Açıklama <span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea rows="5" asp-for="Description" class="form-control col-md-7 col-xs-12"></textarea>
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
