@@ -59,10 +59,10 @@
                     <li>
                         <a><i class="fa fa-car"></i> Para Transferleri <span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href="~/gentela-gh-pages/production/general_elements.html">TL Transfer</a></li>
-                            <li><a href="~/gentela-gh-pages/production/media_gallery.html">Dolar Transfer</a></li>
-                            <li><a href="~/gentela-gh-pages/production/typography.html">Euro Transfer</a></li>
-                            <li><a href="~/gentela-gh-pages/production/icons.html">Diğer Transferler</a></li>
+                            <li><a asp-controller="SendMoney" asp-action="Index" asp-route-mycurrency="TL">TL Transfer</a></li>
+                            <li><a asp-controller="SendMoney" asp-action="Index" asp-route-mycurrency="USD">Dolar Transfer</a></li>
+                            <li><a asp-controller="SendMoney" asp-action="Index" asp-route-mycurrency="EUR">Euro Transfer</a></li>
+                            <li><a asp-controller="SendMoney" asp-action="Index" asp-route-mycurrency="Other">Diğer Transferler</a></li>
                             
                         </ul>
                     </li>
