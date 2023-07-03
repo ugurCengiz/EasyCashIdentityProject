@@ -4,11 +4,10 @@ using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
-using MimeKit.Cryptography;
 
 namespace EasyCashIdentityProject.PresentationLayer.Controllers
 {
-	public class RegisterController : Controller
+    public class RegisterController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
 
